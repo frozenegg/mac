@@ -1,4 +1,4 @@
-from tracer_modules import *
+# from tracer_modules import *
 import time
 import pynput.keyboard
 
@@ -33,12 +33,13 @@ def start_timer():
 # print('sum', timer.get_tn_sum())
 
 def process_key_press(key):
-    if(key == key.space):
-        print('Space key pressed')
+    # if(key == key.space):
+    #     print('Space key pressed')
+    print(key)
 
-# keyboard_listener = pynput.keyboard.Listener(on_press=process_key_press)
-# with keyboard_listener:
-#     keyboard_listener.join()
+keyboard_listener = pynput.keyboard.Listener(on_press=process_key_press)
+with keyboard_listener:
+    keyboard_listener.join()
 #
 # class Sensor_motor:
 #     def __init__(self, angular_velocity, tn):
@@ -99,4 +100,4 @@ def process_key_press(key):
 #
 # print(boo())
 
-car = Car()
+# car = Car()

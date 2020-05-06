@@ -57,7 +57,7 @@ class Car:
 
 
     def __init__(self):
-        print('CAR READY [PRESS BACKSPACE TO BEGIN && PRESS SPACE TO DETECT LINE]')
+        print('CAR READY [PRESS BACKSPACE TO BEGIN && PRESS LEFT-SHIFT TO DETECT LINE]')
         self.sensor_motor = self.Sensor_motor(5)
         self.no_touch_turn_count = 0
         self.t0 = 5
@@ -75,7 +75,7 @@ class Car:
             self.t = threading.Timer(self.t0, self.first_no_touch_turn)
             self.t.start()
 
-        elif(key == key.space and self.sensor_motor.time_start != 0):
+        elif(key == key.shift and self.sensor_motor.time_start != 0):
 
             if(self.no_touch_turn_count%2==0):self.sensor_motor.switch()
 
