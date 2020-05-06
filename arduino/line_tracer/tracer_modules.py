@@ -111,8 +111,10 @@ class Car:
         self.t.start()
 
     def check_count(self):
-        if(self.no_touch_turn_count == 2):
+        if(self.no_touch_turn_count == 3):
             self.t.cancel()
             self.no_touch_turn_count = 0
             print('[-]Counter exceeded limit\n[-]Exiting...')
             exit()
+
+car = Car()
