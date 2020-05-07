@@ -25,19 +25,19 @@ class Car:
             else:
                 return('Turning Left ')
 
-        def sigmoid_reciprocal(self, x):
-            return (np.exp(x) + 1) / np.exp(x)
+        def sigmoid(self, x):
+            return np.exp(x) / (np.exp(x) + 1)
 
         def gear_ratio(self, tn):
             time_ratio = tn / self.t0
-            gear_ratio = self.sigmoid_reciprocal(time_ratio * self.gear_extent)
+            gear_ratio = self.sigmoid(time_ratio * self.gear_extent)
             return gear_ratio
 
         def gear_ratio_modified(self, tn):
             if(self.motor):
-                modified_ratio = self.gear_ratio(tn) ** -1
-            else:
                 modified_ratio = self.gear_ratio(tn)
+            else:
+                modified_ratio = self.gear_ratio(tn) ** -1
             right_gear = round(1 / (modified_ratio + 1), 3)
             left_gear = round(modified_ratio / (modified_ratio + 1), 3)
             return right_gear, left_gear
