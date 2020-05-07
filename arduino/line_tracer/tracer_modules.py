@@ -23,7 +23,7 @@ class Car:
             if(self.motor):
                 return('Turning Right')
             else:
-                return('Turning Left')
+                return('Turning Left ')
 
         def sigmoid_reciprocal(self, x):
             return (np.exp(x) + 1) / np.exp(x)
@@ -58,7 +58,8 @@ class Car:
                 self.tn_sum += tn
                 return(round(tn,3))
             else:
-                return('[-]Error: Run first_get_time()')
+                print('[-]Error: Run first_get_time()\n[-]Exiting...')
+                exit()
 
         def get_tn_sum(self):
             return(self.tn_sum)
