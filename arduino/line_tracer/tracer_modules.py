@@ -93,7 +93,7 @@ class Car:
                 self.t = threading.Timer(tn+self.sensor_motor.t0, self.no_touch_turn)
                 self.t.start()
                 self.no_touch_turn_count = 0
-                print('[+]Line Detected  ' + 'tn:{}  Indicator:{}  Gear Ratio:[{}:{}]'.format(tn, self.sensor_motor.indicate(), self.sensor_motor.gear_ratio_modified(tn)[0], self.sensor_motor.gear_ratio_modified(tn)[1]))
+                print('[+]Line Detected  ' + 'tn:{}  Indicator:{}  Speed Ratio:[{}:{}]'.format(tn, self.sensor_motor.indicate(), self.sensor_motor.gear_ratio_modified(tn)[0], self.sensor_motor.gear_ratio_modified(tn)[1]))
 
             else:
                 if(self.t!=0):self.t.cancel()
@@ -101,12 +101,12 @@ class Car:
                 self.t = threading.Timer(tn+self.sensor_motor.t0, self.no_touch_turn)
                 self.t.start()
                 self.no_touch_turn_count = 0
-                print('[+]Line Detected  ' + 'tn:{}  Indicator:{}  Gear Ratio:[{}:{}]'.format(tn, self.sensor_motor.indicate(), self.sensor_motor.gear_ratio_modified(tn)[0], self.sensor_motor.gear_ratio_modified(tn)[1]))
+                print('[+]Line Detected  ' + 'tn:{}  Indicator:{}  Speed Ratio:[{}:{}]'.format(tn, self.sensor_motor.indicate(), self.sensor_motor.gear_ratio_modified(tn)[0], self.sensor_motor.gear_ratio_modified(tn)[1]))
 
     def first_no_touch_turn(self):
         tn = self.sensor_motor.first_touch_time()
         self.no_touch_turn_count += 1
-        print('[+]Reached limit  ' + 'tn:{}  Indicator:{} (GEAR CONSISTENT)  Count:{}'.format(tn, self.sensor_motor.indicate(), self.no_touch_turn_count))
+        print('[+]Reached limit  ' + 'tn:{}  Indicator:{} (SPEED CONSISTENT)  Count:{}'.format(tn, self.sensor_motor.indicate(), self.no_touch_turn_count))
         self.t = threading.Timer(tn+self.sensor_motor.t0, self.no_touch_turn)
         self.t.start()
 
@@ -114,7 +114,7 @@ class Car:
         tn = self.sensor_motor.touch_time()
         self.check_count()
         self.no_touch_turn_count += 1
-        print('[+]Reached limit  ' + 'tn:{}  Indicator:{} (GEAR CONSISTENT)  Count:{}'.format(tn, self.sensor_motor.indicate(), self.no_touch_turn_count))
+        print('[+]Reached limit  ' + 'tn:{}  Indicator:{} (SPEED CONSISTENT)  Count:{}'.format(tn, self.sensor_motor.indicate(), self.no_touch_turn_count))
         self.t = threading.Timer(tn+self.sensor_motor.t0, self.no_touch_turn)
         self.t.start()
 
