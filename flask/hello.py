@@ -84,6 +84,31 @@ def json():
         'data':data
     })
 
+def get_connection():
+    return pymysql.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        db='testdb',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor,
+    )
+
+# @app.route('/pymysql')
+# def sql():
+#     db = get_connection()
+#     cur = db.cursor()
+#     sql = "select * from members"
+#     cur.execute(sql)
+#     members = cur.fetchall()
+#     cur.close()
+#     db.close()
+#
+#     return jsonify({
+#         'status':'OK',
+#         'members':members
+#     })
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='localhost', port=5000, threaded=True)
