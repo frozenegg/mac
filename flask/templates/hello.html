@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Hello</h3>
+こんにちは。{{ name }}さん。<br><br>
+'/' -> name = hoge<br>
+'/hello/[name]' -> name = [name]<br>
+'/hello4' -> post<br>
+'/odd_even' -> even/odd<br>
+'/hello5?name=[name]' -> name = [name]<br>
+{% endblock %}

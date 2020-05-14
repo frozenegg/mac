@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/hello4" method="POST">
+<input type="text" name='name'></input></form>
+<h3>Hello</h3>
+こんにちは。{{ name }}さん。
+{% endblock %}
