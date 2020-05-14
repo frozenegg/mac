@@ -1,6 +1,5 @@
 from blockchain import *
 import uuid
-import http.server
 from flask import Flask, request, jsonify
 from flask import render_template
 import hashlib
