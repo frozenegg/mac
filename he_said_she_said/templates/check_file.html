@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Check file in InfoChain</h3>
+<form action="/check" method="POST" enctype="multipart/form-data">
+<input type=file name=file></input>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}

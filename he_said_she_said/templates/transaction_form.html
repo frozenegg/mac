@@ -2,7 +2,7 @@
 {% block content %}
 <h3>InfoChain</h3>
 Fill in:
-<form action="/transaction" method="POST">
+<form action="/transaction" method="POST" enctype="multipart/form-data">
 <input type="email" name='user' placeholder='email'></input>
 <input type="text" name='comment' placeholder='comment'></input><br>
 <input type=file name=file></input><br><br>

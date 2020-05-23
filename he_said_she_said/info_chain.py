@@ -93,3 +93,11 @@ class InfoChain:
                         user_transaction.append(transaction)
         return user_transaction
 
+    def check_file(self, file):
+        check = False
+        for block in self.chain:
+            for transaction in block['transactions']:
+                if(transaction['file_sha256'] == file):
+                    check = transaction
+        return check
+

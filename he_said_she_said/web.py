@@ -5,6 +5,7 @@ from flask import render_template, flash, request, redirect, url_for
 import hashlib
 import smtplib
 import datetime
+from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 node_address = str(uuid.uuid4()).replace('-', '')
@@ -47,11 +48,11 @@ def transaction():
         user = hashlib.md5(raw_user.encode("UTF-8")).hexdigest()
         comment = request.form['comment']
         verify = False
+        file = request.files['file']
         
         if 'file' in request.files and allowed_file(file.filename): 
-            file = request.files['file']
             filename = secure_filename(file.filename)
-            file_sha256 = hashlib.sha256(file.encode("UTF-8")).hexdigest()
+            file_sha256 = hashlib.sha256(filename.encode("UTF-8")).hexdigest()
         else:
             file_sha256 = 'No file'
 
@@ -99,6 +100,25 @@ def get_transaction():
             user = hashlib.md5(raw_user.encode("UTF-8")).hexdigest()
             user_transaction = info_chain.get_user_transaction(user, comment)
             return jsonify({'data': user_transaction})
+
+@app.route('/check', methods=["GET", "POST"])
+def check():
+    if request.method == "GET":
+        return render_template('check_file.html')
+    else:
+        file = request.files['file']
+        
+        if 'file' in request.files and allowed_file(file.filename): 
+            filename = secure_filename(file.filename)
+            file_sha256 = hashlib.sha256(filename.encode("UTF-8")).hexdigest()
+        else:
+            file_sha256 = 'Invalid file'
+        file_is_valid = info_chain.check_file(file_sha256)
+        if(file_is_valid):
+            return jsonify({'data': file_is_valid})
+        else:
+            return render_template('file_not_valid.html', filename=file_sha256)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host=domain, port=5000, threaded=True)
