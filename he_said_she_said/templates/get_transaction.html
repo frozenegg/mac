@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Fetch Transaction</h3>
+Who are you?
+<form action="/get_transaction" method="POST">
+<input type="email" name='user' placeholder='email'></input>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}
