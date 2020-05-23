@@ -82,11 +82,14 @@ class InfoChain:
             if(transaction['verify'] != False):
                 self.pending_transaction_verified.append(transaction)
 
-    def get_user_transaction(self, user):
+    def get_user_transaction(self, user, comment):
         user_transaction = []
         for block in self.chain:
             for transaction in block['transactions']:
                 if(transaction['user'] == user):
-                    user_transaction.append(transaction)
+                    if(comment and transaction['comment'] == comment):
+                        user_transaction.append(transaction)
+                    elif(not comment):
+                        user_transaction.append(transaction)
         return user_transaction
 

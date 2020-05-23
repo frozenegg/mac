@@ -13,7 +13,7 @@ domain = 'localhost'
 
 app = Flask(__name__)
 email = 'infochain.yui@gmail.com'
-password = ''
+password = 'password'
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -53,8 +53,7 @@ def transaction():
             filename = secure_filename(file.filename)
             file_sha256 = hashlib.sha256(file.encode("UTF-8")).hexdigest()
         else:
-            file = 0
-            file_sha256 = str(file)
+            file_sha256 = 'No file'
 
         new_transaction = info_chain.create_new_transaction(user, comment, file_sha256, verify)
         transaction_id = new_transaction['transaction_id']
@@ -96,8 +95,9 @@ def get_transaction():
             return render_template('get_transaction.html')
         else:
             raw_user = request.form['user']
+            comment = request.form['comment']
             user = hashlib.md5(raw_user.encode("UTF-8")).hexdigest()
-            user_transaction = info_chain.get_user_transaction(user)
+            user_transaction = info_chain.get_user_transaction(user, comment)
             return jsonify({'data': user_transaction})
 
 if __name__ == "__main__":
