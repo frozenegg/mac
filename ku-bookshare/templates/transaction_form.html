@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>InfoChain</h3>
+Fill in:
+<form action="/transaction" method="POST">
+<input type="email" name='user1' placeholder='email [from]'></input><br>
+<input type="email" name='user2' placeholder='email [to]'></input><br>
+<label for="assessment">Assessment:</label>
+
+<select name="assessment" id="assessment">
+  <option value="best">Best of all</option>
+  <option value="fine">Fine</option>
+  <option value="no_good">No Good</option>
+  <option value="so_bad">So Bad</option>
+</select><br>
+<input type="text" name='comment' placeholder='any comment'></input><br>
+<input type="text" name='book_id' placeholder='book id'></input><br>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}

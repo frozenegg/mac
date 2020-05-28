@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/add_book" method="POST" enctype="multipart/form-data">
+<input type="email" name='user' placeholder='email'></input><br>
+<input type="text" name='book_id' placeholder='book'></input><br>
+Photo:<br>
+<input type="file" name='file'></input><br>
+<input type="number" min="0" max="100000" step="100" name='price' placeholder='price'></input><br>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}

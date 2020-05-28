@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/cancel_upload" method="POST">
+<input type="email" name='user' placeholder='email'></input><br>
+<input type="text" name='book_id' placeholder='book'></input><br>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}

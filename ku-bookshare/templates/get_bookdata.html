@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/get_bookdata" method="POST">
+<input type="text" name='book_id' placeholder='book id'></input><br>
+<button type="submit" value="button">Submit</button>
+</form>
+{% endblock %}
