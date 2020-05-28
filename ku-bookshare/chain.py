@@ -165,12 +165,24 @@ class InfoChain:
             return o.__str__()
 
     def save_chain(self):
-        saved_chain ={
+        saved_chain = {
             'timestamp' : datetime.datetime.now(),
             'chain': self.chain
         }
         json_chain = json.dumps(saved_chain, default=self.myconverter)
         with open('blockchain.json', 'w') as f:
+            json.dump(json_chain, f)
+
+    def add_user(self, email, line_id):
+        user_account = {
+            'timestamp' : datetime.datetime.now(),
+            'line_id': line_id,
+            'email': email,
+            'verification': False
+        }
+        line_id_md5 = hashlib.md5(line_id.encode("UTF-8")).hexdigest()
+        json_chain = json.dumps(user_account, default=self.myconverter)
+        with open('data/' + line_id_md5 + '.json', 'w') as f:
             json.dump(json_chain, f)
 
 

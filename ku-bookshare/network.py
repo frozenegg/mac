@@ -16,12 +16,13 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 import requests
-import pandas as pd
-import pynput.keyboard
 import json
+import os
+import yaml
 
 domain = 'localhost'
-proper_domain = 'http://localhost:5000'
+# proper_domain = 'http://localhost:5000'
+proper_domain = 'https://46ad2cb74261.ngrok.io'
 
 access_token = ''
 line_bot_api = LineBotApi(access_token)
@@ -57,12 +58,12 @@ def send_mail_transaction(user, book_id, transaction_id, person):
 
 def send_mail_request_activation(user1, user2_md5, book_id):
     user1_md5 = hashlib.md5(user1.encode("UTF-8")).hexdigest()
-    message = 'Click the link below to send offer to the seller\n' + 'book id: ' + book_id + '\n' + proper_domain + '/activation{}/{}-{}-{}'.format(3, user1_md5, user2_md5, book_id)
+    message = 'Click the link below to send offer to the seller\n' + 'book id: ' + book_id + '\n' + proper_domain + '/activation3/{}-{}-{}'.format(user1_md5, user2_md5, book_id)
     send_mail(user1, message)
 
-# def myconverter(o):
-#     if isinstance(o, datetime.datetime):
-#         return o.__str__()
+def send_mail_add_user(email, line_id_md5):
+    message = 'Click the link below to activate user!\n\n' + proper_domain + '/activation4/{}'.format(line_id_md5)
+    send_mail(email, message)
 
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
@@ -159,7 +160,24 @@ def activation2(transaction_id=None):
 @app.route('/activation3/<user_book_id>')
 def actication3(user_book_id=None):
     user1_md5, user2_md5, book_id = user_book_id.split('-')
+
+
+
     return user1_md5
+
+@app.route('/activation4/<line_id_md5>')
+def add_user(line_id_md5=None):
+    with open('data/' + line_id_md5 + '.json', 'r') as f:
+        data = json.load(f)
+        data_jsonified = yaml.load(data)
+        data_jsonified['verification'] = True
+
+    line_bot_api.push_message(data_jsonified['line_id'], TextSendMessage(text='認証が完了しました。'))
+
+    with open('data/' + line_id_md5 + '.json', 'w') as f:
+        json.dump(data_jsonified, f)
+
+    return 'User activated successfully.'
 
 @app.route('/get_user_transaction', methods=["GET", "POST"])
 def get_user_transaction():
@@ -270,9 +288,12 @@ def callback():
         line_user_id = events[0]['source']['userId']
         message = events[0]['message']['text']
 
+        line_id_md5 = hashlib.md5(line_user_id.encode("UTF-8")).hexdigest()
+
         if('@st.kyoto-u.ac.jp' in message):
-            line_bot_api.push_message(line_user_id, TextSendMessage(text='学内メール宛に確認メールを送信しました.\nリンクを開いてユーザーを有効化してください.'))
-            print('received')
+            info_chain.add_user(message, line_user_id)
+            send_mail_add_user(message, line_id_md5)
+            line_bot_api.push_message(line_user_id, TextSendMessage(text='学内メール宛に確認メールを送信しました。\nリンクを開いてユーザーを有効化してください。\n\n間違えた場合は正しいアドレスをもう一度送信してください。'))
 
     return 'OK' 
 
