@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>京大学生市場</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- site icons -->
+      
+
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='responsive.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='colors.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='animate.css') }}">
+
+   </head>
+   <body id="default_theme" class="home_page1">
+      <!-- header -->
+      <header class="header header_style1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-9 col-lg-10">
+                  <div class="logo"><a href="/"><img src="static/images/logo.png" alt="#" /></a></div>
+                  <div class="main_menu float-right">
+                     <div class="menu">
+                        <ul class="clearfix">
+                           <li class="active"><a href="/">Home</a></li>
+                           <li><a href="/#使い方">使い方</a></li>
+                           <li><a href="/#line">Line@</a></li>
+                           <li><a href="team.html">Team</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3 col-lg-2">
+                  <div class="right_bt"><a class="bt_main" href="/">協力者募集</a> </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <section id="banner_parallax" class="slide_banner1">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="full">
+                     <div class="slide_cont">
+                        <h2>京大生だけの</h2>
+                        <h2>再活用</h2>
+                        <h2>プラットフォーム</h2>
+                        <!-- <div class="full slide_bt"> <a class="white_bt bt_main" href="index.html">Download</a> </div>
+                        <div class="full slide_bt"> <a class="white_bt bt_main" href="index.html">Download</a> </div>
+                        <div class="full slide_bt"> <a class="white_bt bt_main" href="index.html">Download</a> </div> -->
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="full">
+                     <div class="slide_pc_img wow fadeInRight" data-wow-delay="1s" data-wow-duration="2s"> <img src="static/images/pc-banner.png" alt="#" /> </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end header -->
+      <!-- section -->
+      <section class="layout_padding gradiant_bg cross_layout">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="information_blogs">
+                     <div class="imf_icon"><img src="static/images/icon1.png" alt="#" /></div>
+                     <div class="imf_head">
+                        <h3>出品はこちら</h3>
+                     </div>
+                     <div class="imf_cont">
+                        <p>学内メールを用いて市場に出品できます。</p>
+                     </div>
+                     <div class="imf_read"><a href="../add_book">ここをクリック！</a></div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="information_blogs">
+                     <div class="imf_icon"><img src="static/images/icon2.png" alt="#" /></div>
+                     <div class="imf_head">
+                        <h3>科目で検索はこちら</h3>
+                     </div>
+                     <div class="imf_cont">
+                        <p>科目別の商品一覧を見ることができます。</p>
+                     </div>
+                     <div class="imf_read"><a href="../get_bookdata">ここをクリック！</a></div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="information_blogs">
+                     <div class="imf_icon"><img src="static/images/icon3.png" alt="#" /></div>
+                     <div class="imf_head">
+                        <h3>出品キャンセル</h3>
+                     </div>
+                     <div class="imf_cont">
+                        <p>出品を取り下げることができます。</p>
+                     </div>
+                     <div class="imf_read"><a href="../get_user_bookdata">ここをクリック！</a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="full text_align_center">
+                  <div class="heading_main center_head_border heading_style_1">
+                     <br>
+                     <h2>サービスの <span>特徴</span></h2>
+                     <div style="text-align:center;">
+                        <p>学内メールで常に認証を行うので、すべての取引相手が京大生で安心。</p>
+                        <p>取引履歴、出品情報をブロックチェーンで保管するので、やり取りの信頼性が担保されます。</p>
+                        <p>学内で簡単に取引できるので、梱包や発送の手間がありません。</p>
+                        <p>中古専門書、中古参考書をもっと身近に。</p><br><br>
+                        <p>約１５分おきに市場情報が更新されます。<br>
+                        <p>マッチングのみで取引には一切関与しません。取引はご自由に。</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- section -->
+      <section class="layout_padding padding_top_0" id="使い方">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="full text_align_center">
+                     <div class="heading_main center_head_border heading_style_1"><br>
+                        <h2>サービスの <span>使い方</span></h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row margin_bottom_30">
+               <div class="col-md-6 cont_theme_blog">
+                  <div class="full">
+                     <h3>出品</h3>
+                     <p>LINE@で学内メールアドレスを登録して出品ページに行きます。</p>
+                     <p>学内メールを入力しますが、京大生であることの確認のみに利用します。</p>
+                     <p>出品ページで学内メールアドレス、商品名、価格を入力するだけ！</p>
+                     <p>以降の取引はLINE@で通知されますので、安心してお待ちください。</p>
+                  </div>
+               </div>
+               <!-- end featured cont -->
+               <!-- featured image -->
+               <div class="col-md-6 wow fadeInRight" data-wow-delay="0.5" data-wow-duration="1s">
+                  <div class="full">
+                     <div class="center"><img src="static/images/ser1.png" alt="#" /></div>
+                  </div>
+               </div>
+               <!-- end featured image -->
+            </div>
+            <div class="row margin_bottom_30">
+               <!-- featured image -->
+               <div class="col-md-6 wow fadeInLeft" data-wow-delay="0.5" data-wow-duration="1s">
+                  <div class="full">
+                     <div class="center"><img src="static/images/ser2.png" alt="#" /></div>
+                  </div>
+               </div>
+               <!-- end featured image -->
+               <!-- featured cont -->
+               <div class="col-md-6 cont_theme_blog">
+                  <div class="full">
+                     <h3>商品の検索</h3>
+                     <p>科目別で商品の一覧が表示されます。</p>
+                     <p>商品の情報欄で出品者の過去の取引情報などを確認できます。</p>
+                  </div>
+               </div>
+               <!-- end featured cont -->
+            </div>
+            <div class="row margin_bottom_30">
+               <!-- featured cont -->
+               <div class="col-md-6 cont_theme_blog">
+                  <div class="full">
+                     <h3>購入リクエスト</h3>
+                     <p>取引したい商品があれば、出品者に購入リクエストを送信します。</p>
+                     <p>学内メールを入力しますが、京大生であることの確認のみに利用します。</p>
+                     <p>以降の取引はLINE@で通知されますので、安心してお待ちください。</p><br>
+                     <p>取引直後に必ず取引情報を送信してください。</p>
+                  </div>
+               </div>
+               <div class="col-md-6 wow fadeInRight" data-wow-delay="0.5" data-wow-duration="1s">
+                  <div class="full">
+                     <div class="center"><img src="static/images/ser3.png" alt="#" /></div>
+                  </div>
+               </div>
+               <!-- end featured image -->
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      <!-- section -->
+      <section class="layout_padding layer_style">
+         <div class="container" id="line">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="full text_align_center">
+                     <div class="heading_main center_head_border heading_style_1">
+                        <h2>LINE@ <span>登録</span></h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row app-features">
+               <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="features-left">
+                     <li>
+                        <i class="flaticon-wordpress-logo"></i>
+                        <div class="fl-inner">
+                           <h4>取引の通知</h4>
+                           <p>取引に関する情報がLINE@で届きます。</p>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="features-right">
+                     <li>
+                        <i class="flaticon-windows"></i>
+                        <div class="fl-inner">
+                           <h4>お知らせ通知</h4>
+                           <p>このサービスについてのお知らせが届きます。</p>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div class="col-md-4 wow fadeInRight" data-wow-delay="0.5" data-wow-duration="1s">
+                  <div class="full">
+                     <div class="center">
+                        <img src="static/images/line.png" alt="#" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end section -->
+      
+      <!--=========== js section ===========-->
+      <script type=text/javascript src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+      <script type=text/javascript src="{{ url_for('static', filename='popper.min.js') }}"></script>
+      <script type=text/javascript src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+      <script type=text/javascript src="{{ url_for('static', filename='wow.js') }}"></script>
+      <script type=text/javascript src="{{ url_for('static', filename='custom.js') }}"></script>
+
+</html>

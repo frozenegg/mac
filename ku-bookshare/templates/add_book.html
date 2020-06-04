@@ -3,9 +3,21 @@
 <form action="/add_book" method="POST" enctype="multipart/form-data">
 <input type="email" name='user' placeholder='email'></input><br>
 <input type="text" name='book_id' placeholder='book'></input><br>
-Photo:<br>
-<input type="file" name='file'></input><br>
-<input type="number" min="0" max="100000" step="100" name='price' placeholder='price'></input><br>
+<select name="quality" id="quality">
+  <option value="perfect">ほぼ新品</option>
+  <option value="good_no">良い（書き込みなし）</option>
+  <option value="good_yes">良い（書き込みあり）</option>
+  <option value="not_good">あまり良くない</option>
+  <option value="rubbish">処分目的</option>
+</select><br>
+<select name="subject" id="subject">
+  <option value="physics">物理</option>
+  <option value="chemistry">化学</option>
+  <option value="biology">生物</option>
+  <option value="law">法学</option>
+  <option value="others">その他</option>
+</select><br>
+<input type="number" min="0" max="100000" step="100" name='price' placeholder='希望金額'></input><br>
 <button type="submit" value="button">Submit</button>
 </form>
 {% endblock %}

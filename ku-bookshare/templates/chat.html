@@ -1,0 +1,14 @@
+{% extends "layout2.html" %}
+{% block content %}
+<p>{{ message }}</p>
+商品の受け渡しが完了して、取引履歴を保管したい場合はその場で両方が認証をしてください。<br>
+取引フォームは<a href='{{transaction_url}}'>こちら</a>から。<br>
+<br>
+このメッセージは、取引している両方のLINEに通知が行きます。（LINE@に登録している場合）<br><br>
+<form action="" method="post">
+    <p><input type=text size="50" name=post_message><input type=submit value=送信>
+</form><br>
+{% for item in post_message | reverse %}
+    <b>{{item}}</b><br>
+{% endfor %}
+{% endblock %}

@@ -4,6 +4,7 @@ import json
 import hashlib
 import collections
 import yaml
+import threading
 
 class InfoChain:
     def __init__(self):
@@ -11,16 +12,21 @@ class InfoChain:
         self.pending_transaction = []
         self.network_nodes = []
         self.pending_transaction_verified = []
+        self.t = 0
 
-        if(len(self.chain) == 0):
-            self.create_new_block(100, '0', '0')
-        else:
+        try:
             with open('blockchain.json', 'r') as f:
                 saved_json_string = json.load(f, object_pairs_hook=collections.OrderedDict)
                 saved_json = yaml.load(saved_json_string)
 
             for block in saved_json['chain']:
-                self.chain.append(block)      
+                self.chain.append(block)
+        except:
+            self.create_new_block(100, '0', '0')
+
+        self.t = threading.Timer(900, self.mining_cycle)
+        self.t.start()
+
 
     def create_new_block(self, nonce, previous_block_hash, hash):
         new_block = {
@@ -32,12 +38,27 @@ class InfoChain:
             'previous_block_hash' : previous_block_hash
         }
 
-        self.pending_transaction = []           # reset pending_transaction
+        self.pending_transaction = []
         self.pending_transaction_verified = []
         self.chain.append(new_block)
         self.save_chain()
 
         return new_block
+
+    def mining_cycle(self):
+        self.t.cancel()
+        last_block = self.get_last_block()
+        previous_block_hash = last_block['hash']
+        self.verification()
+        current_block_data = {
+            'transactions':self.pending_transaction_verified,
+            'index':last_block['index'] + 1
+        }
+        nonce = self.proof_of_work(previous_block_hash, current_block_data)
+        block_hash = self.hash_block(previous_block_hash, current_block_data, nonce)
+        new_block = self.create_new_block(nonce, previous_block_hash, block_hash)
+        self.t = threading.Timer(900, self.mining_cycle)
+        self.t.start()
 
     def get_last_block(self):
         return self.chain[len(self.chain) - 1]
@@ -56,14 +77,15 @@ class InfoChain:
 
         return new_transaction
 
-    def create_new_bookdata(self, user_md5, book_id, quality, on_sale, verification, price):
+    def create_new_bookdata(self, user_md5, book_id, quality, on_sale, verification, price, subject):
         new_book = {
             'user' : user_md5,
             'book_id' : book_id,
             'quality' : quality,
             'on_sale' : on_sale,
             'verification' : verification,
-            'price' : price
+            'price' : price,
+            'subject': subject
         }
 
         return new_book
@@ -141,11 +163,11 @@ class InfoChain:
                     user_bookdata.append(bookdata)
         return self.delete_same_book(user_bookdata)
 
-    def get_bookdata(self, book_id):
+    def get_bookdata(self, subject):
         bookdatas = []
         for block in reversed(self.chain):
             for bookdata in reversed(block['transactions']):
-                if('on_sale' in bookdata.keys() and bookdata['book_id'] == book_id):
+                if('on_sale' in bookdata.keys() and bookdata['subject'] == subject):
                     bookdatas.append(bookdata)
         return self.delete_same_book(bookdatas)
 
@@ -184,7 +206,3 @@ class InfoChain:
         json_chain = json.dumps(user_account, default=self.myconverter)
         with open('data/' + line_id_md5 + '.json', 'w') as f:
             json.dump(json_chain, f)
-
-
-
-

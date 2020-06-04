@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 <form action="/get_user_bookdata" method="POST">
-<input type="text" name='user' placeholder='email'></input><br>
+<p>あなたが出品した商品を表示します。</p>
+<input type="text" name='user' placeholder='email'></input><br><br>
 <button type="submit" value="button">Submit</button>
 </form>
 {% endblock %}
