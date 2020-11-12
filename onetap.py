@@ -4,7 +4,7 @@ import random
 
 payload1 = {
     'player[email]': 'silicondoo@gmail.com',
-    'player[password]': 'pu7wrnvx56t85'
+    'player[password]': ''
 }
 
 temp_list = [35.8, 35.9, 36.0, 36.1, 36.2]
