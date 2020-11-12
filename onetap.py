@@ -3,7 +3,7 @@ import requests
 import random
 
 payload1 = {
-    'player[email]': 'silicondoo@gmail.com',
+    'player[email]': '',
     'player[password]': ''
 }
 
