@@ -17,7 +17,7 @@ payload1 = {
 }
 
 s = requests.Session()
-r = s.get('https://api.ouraring.com/v1/sleep?start={}&end{}&access_token=7JMT6BHEF3TI77K4M53ITWXXINLCV6SN'.format(two_days_ago, yesterday))
+r = s.get('https://api.ouraring.com/v1/sleep?start={}&end{}&access_token='.format(two_days_ago, yesterday))
 json_data = r.json()
 temp_delta = json_data['sleep'][0]['temperature_delta']
 abs_temp = 36.0
