@@ -4,6 +4,18 @@ import random
 import datetime
 from datetime import datetime, timedelta, date
 import json
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
+
+access_token = ''
+line_bot_api = LineBotApi(access_token)
 
 today = date.today()
 yesterday = today - timedelta(days=1)
@@ -43,13 +55,13 @@ payload2 = {
 
 r = s.get('https://www.one-tap.jp/players/sign_in')
 # print(r.text)
-soup = BeautifulSoup(r.text)
+soup = BeautifulSoup(r.text, features="html.parser")
 auth_token = soup.find(attrs={'name': 'authenticity_token'}).get('value')
 payload1['authenticity_token'] = auth_token
 
 r = s.post('https://www.one-tap.jp/players/sign_in', data=payload1)
 # print(r.text)
-soup = BeautifulSoup(r.text, features="lxml")
+soup = BeautifulSoup(r.text, features="html.parser")
 auth_token = soup.find(attrs={'name': 'csrf-token'}).get('content')
 payload2['authenticity_token'] = auth_token
 r = s.get('https://www.one-tap.jp/teams/2873/player/condition_records/')
@@ -57,3 +69,7 @@ r = s.get('https://www.one-tap.jp/teams/2873/player/condition_records/')
 r = s.post('https://www.one-tap.jp/teams/2873/player/condition_records/', data=payload2)
 # print(r.text)
 # print(body_temp)
+
+line_bot_api.push_message('', TextSendMessage(text='OneTap: {}℃'.format(body_temp)))
+# crontab -e
+# screen ctl-a d[detach] k[kill]
